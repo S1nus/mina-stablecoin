@@ -1,4 +1,4 @@
-import { Field, SmartContract, state, State, method } from 'snarkyjs';
+import { Field, SmartContract, state, State } from 'snarkyjs';
 
 /**
  * Basic Example
@@ -9,7 +9,22 @@ import { Field, SmartContract, state, State, method } from 'snarkyjs';
  *
  * This file is safe to delete and replace with your own contract.
  */
-export class Add extends SmartContract {
+
+export class MUSDStable extends SmartContract {
+  @state(Field) mapRoot = State<Field>();
+
+  /*@method init(initialRoot: Field) {
+    super.init();
+    this.mapRoot.set(initialRoot);
+  }*/
+
+  init(initialRoot: Field) {
+    super.init();
+    this.mapRoot.set(Field(initialRoot));
+  }
+}
+
+/*export class Add extends SmartContract {
   @state(Field) num = State<Field>();
 
   init() {
@@ -23,4 +38,4 @@ export class Add extends SmartContract {
     const newState = currentState.add(2);
     this.num.set(newState);
   }
-}
+}*/

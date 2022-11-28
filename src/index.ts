@@ -1,3 +1,3 @@
-import { Add } from './Add.js';
+import { MUSDStable } from './Musd.ts';
 
-export { Add };
+export { MUSDStable };

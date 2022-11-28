@@ -1,8 +1,8 @@
-import { Add } from './Add';
+import { MUSDStable } from './Musd';
 import {
   isReady,
   shutdown,
-  Field,
+  //Field,
   Mina,
   PrivateKey,
   PublicKey,
@@ -18,15 +18,15 @@ import {
 
 let proofsEnabled = false;
 
-describe('Add', () => {
+describe('MUSD', () => {
   let deployerAccount: PrivateKey,
     zkAppAddress: PublicKey,
     zkAppPrivateKey: PrivateKey,
-    zkApp: Add;
+    zkApp: MUSDStable;
 
   beforeAll(async () => {
     await isReady;
-    if (proofsEnabled) Add.compile();
+    if (proofsEnabled) MUSDStable.compile();
   });
 
   beforeEach(() => {
@@ -35,7 +35,7 @@ describe('Add', () => {
     deployerAccount = Local.testAccounts[0].privateKey;
     zkAppPrivateKey = PrivateKey.random();
     zkAppAddress = zkAppPrivateKey.toPublicKey();
-    zkApp = new Add(zkAppAddress);
+    zkApp = new MUSDStable(zkAppAddress);
   });
 
   afterAll(() => {
@@ -57,11 +57,11 @@ describe('Add', () => {
 
   it('generates and deploys the `Add` smart contract', async () => {
     await localDeploy();
-    const num = zkApp.num.get();
-    expect(num).toEqual(Field(1));
+    /*const num = zkApp.num.get();
+    expect(num).toEqual(Field(1));*/
   });
 
-  it('correctly updates the num state on the `Add` smart contract', async () => {
+  /*it('correctly updates the num state on the `Add` smart contract', async () => {
     await localDeploy();
 
     // update transaction
@@ -73,5 +73,5 @@ describe('Add', () => {
 
     const updatedNum = zkApp.num.get();
     expect(updatedNum).toEqual(Field(3));
-  });
+  });*/
 });
